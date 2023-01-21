@@ -46,8 +46,21 @@ Create a function called "showMovies" that
 
 */
 
-function showMovies() {
+function showMovies(movies) {
   // add code here
+const showMovies = document.querySelector('#allMovies');
+
+movies.forEach((movie) => {
+  const li = document.createElement ('li');
+  const pOne = document.createElement ('h1');
+  const pTwo = document.createElement ('p');
+  pOne.innerText = movie.title;
+  pTwo.innerText = movie.director;
+  li.style.backgroundColor = 'red';
+  li.appendChild(pOne);
+  li.appendChild(pTwo);
+  showMovies.appendChild(li);
+})
 }
 
 

@@ -10,3 +10,7 @@ form {
 .form-group {
   margin-right: 20px;
 }
+#allMovies {
+  display: flex;
+  list-style: none;
+}
