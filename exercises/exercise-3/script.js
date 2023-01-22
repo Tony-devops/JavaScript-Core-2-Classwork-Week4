@@ -48,21 +48,24 @@ Create a function called "showMovies" that
 
 function showMovies(movies) {
   // add code here
-const showMovies = document.querySelector('#allMovies');
+const moviesList = document.getElementById("all-movies");
+  // clear movies list
+  moviesList.innerHTML = "";
+  const moviesNumber = document.getElementById("movies-number");
 
-movies.forEach((movie) => {
-  const li = document.createElement ('li');
-  const pOne = document.createElement ('h1');
-  const pTwo = document.createElement ('p');
-  pOne.innerText = movie.title;
-  pTwo.innerText = movie.director;
-  li.style.backgroundColor = 'red';
-  li.appendChild(pOne);
-  li.appendChild(pTwo);
-  showMovies.appendChild(li);
-})
+  for (let i = 0; i < movies.length; i++) {
+    const movie = movies[i];
+    const movieElement = document.createElement("p");
+    movieElement.innerText = movie.title + " - " + movie.director;
+    moviesList.appendChild(movieElement);
+  }
+
+  moviesNumber.innerText = movies.length;
 }
-
+/*
+const showMovies = (movies) => {
+  
+} */
 
 /*
 
@@ -75,13 +78,20 @@ How many movies can you see on your page?
 
 */
 
-const myFavMovie = {
-  // add code here
+const myFavMovie = { title: "My Favorite Movie", director: "My Favorite Director" };
+
+const addMovie = (newMovie, callback) => {
+  setTimeout(function() {
+    movies.push(newMovie);
+    callback();
+  }, 2000);
 }
 
-function addMovie(movie, callback) {
-  // add code here
-}
+addMovie(myFavMovie, showMovies);
+
+// showMovies is passed as a callback to the addMovie function,
+// this way after 2 seconds of adding the new movie, the showMovies function will be called,
+// which will display the updated list of movies on the screen.
 
 /*
 
@@ -105,3 +115,17 @@ Task 4 - **Extra**
 Hint: Use the functions you created on tasks 1-3
 
 */
+const form = document.getElementById("add-movies");
+form.addEventListener("submit", function(event) {
+  // prevent the default behavior of a form submission which would refresh the page.
+  event.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const director = document.getElementById("director").value;
+  const type = document.getElementById("type").value;
+  const haveWatched = document.getElementById("haveWatched").checked;
+
+  const newMovie = { title, director, type, haveWatched };
+
+  addMovie(newMovie, showMovies);
+});

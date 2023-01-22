@@ -44,4 +44,26 @@ setInterval(changeBG, 5000);
 
 var randomColor = () => Math.floor(Math.random() * 16777215).toString(16);
 setInterval(() => (document.body.style.backgroundColor = randomColor()), 2000);
- */
+ 
+// program to stop the setInterval() method after five times
+
+let count = 0;
+
+// function creation
+let interval = setInterval(function(){
+
+    // increasing the count by 1
+    count += 1;
+
+    // when count equals to 5, stop the function
+    if(count === 5){
+        clearInterval(interval);
+    }
+
+    // display the current time
+    let dateTime= new Date();
+    let time = dateTime.toLocaleTimeString();
+    console.log(time);
+
+}, 2000);
+*/
